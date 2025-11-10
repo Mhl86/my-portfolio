@@ -1,6 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    // Optional: prevent default to handle manually, but we can still let Formspree submit
+    // e.preventDefault();
+
+    // Reset form after submission
+    setTimeout(() => {
+      setFormData({ name: "", email: "", message: "" });
+    }, 100); // small delay to allow form submission
+  };
+
   return (
     <section
       id="contact"
@@ -20,6 +40,7 @@ function Contact() {
           action="https://formspree.io/f/xvgwydgp"
           method="POST"
           className="flex flex-col gap-4"
+          onSubmit={handleSubmit}
         >
           <label htmlFor="name" className="sr-only">
             Your Name
@@ -30,6 +51,8 @@ function Contact() {
             name="name"
             placeholder="Your Name"
             className="border border-gray-300 rounded p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            value={formData.name}
+            onChange={handleChange}
             required
           />
 
@@ -42,6 +65,8 @@ function Contact() {
             name="email"
             placeholder="Your Email"
             className="border border-gray-300 rounded p-3 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            value={formData.email}
+            onChange={handleChange}
             required
           />
 
@@ -53,6 +78,8 @@ function Contact() {
             name="message"
             placeholder="Your Message"
             className="border border-gray-300 rounded p-3 h-32 resize-none focus:outline-none focus:ring-2 focus:ring-blue-400"
+            value={formData.message}
+            onChange={handleChange}
             required
           />
 
