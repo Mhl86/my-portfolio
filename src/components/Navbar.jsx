@@ -4,7 +4,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const links = [
     { name: "Home", href: "#home" },
-    { name: "My CV", href: "/CV.pdf", target: "_blank" },
+    { name: "My CV", href: "/cv.pdf", target: "_blank" },
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
