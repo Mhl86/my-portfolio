@@ -9,11 +9,11 @@ function Contact() {
       {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
-        style={{ backgroundImage: "url('/contact.avif')" }}
+        style={{ backgroundImage: "url('/contact.jpg')" }}
       ></div>
 
       {/* Content */}
-      <div className="relative z-10 bg-white/50 p-8 rounded-lg max-w-lg mx-auto">
+      <div className="relative z-10 bg-white/90 p-8 rounded-lg max-w-lg mx-auto">
         <h2 className="text-3xl font-bold mb-6 text-blue-600">Contact Me</h2>
 
         <form
