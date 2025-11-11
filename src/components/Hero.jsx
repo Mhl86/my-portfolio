@@ -14,7 +14,7 @@ function Hero() {
       id="home"
       className="relative min-h-screen flex flex-col justify-center items-center text-center px-4 overflow-hidden"
     >
-      {/* Background image only */}
+      {/* Background image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-fixed"
         style={{ backgroundImage: "url('/hero.jpg')" }}
@@ -22,16 +22,22 @@ function Hero() {
 
       {/* Content */}
       <div className="relative z-10 text-white">
-        <h1 className="text-4xl md:text-6xl font-bold mb-4 flex flex-wrap justify-center">
-          {nameLetters.map((letter, i) => (
-            <span
-              key={i}
-              className="inline-block opacity-0 animate-fadeIn"
-              style={{ animationDelay: `${i * 0.08}s` }}
-            >
-              {letter === " " ? "\u00A0" : letter}
-            </span>
-          ))}
+        <h1 className="text-4xl md:text-6xl font-bold mb-4 text-center leading-tight">
+          {/* Mobile (static name) */}
+          <span className="block md:hidden">Mhd Hicham Allaham</span>
+
+          {/* Desktop (animated name) */}
+          <span className="hidden md:flex flex-wrap justify-center">
+            {nameLetters.map((letter, i) => (
+              <span
+                key={i}
+                className="inline-block opacity-0 animate-fadeIn"
+                style={{ animationDelay: `${i * 0.08}s` }}
+              >
+                {letter === " " ? "\u00A0" : letter}
+              </span>
+            ))}
+          </span>
         </h1>
 
         <p className="text-base sm:text-lg md:text-xl max-w-3xl mb-8">
@@ -68,6 +74,7 @@ function Hero() {
         </div>
       </div>
 
+      {/* Animations */}
       <style>
         {`
           @keyframes fadeIn {

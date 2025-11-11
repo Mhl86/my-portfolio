@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+
   const links = [
     { name: "Home", href: "#home" },
     { name: "My CV", href: "/cv.pdf", target: "_blank" },
@@ -11,7 +13,7 @@ function Navbar() {
   ];
 
   return (
-    <nav className="bg-gray-900 text-white fixed w-full z-10 shadow-md">
+    <nav className="bg-gray-900 text-white fixed w-full z-20 shadow-md">
       <div className="max-w-6xl mx-auto px-6 flex justify-between items-center py-4">
         {/* Logo */}
         <div className="text-2xl font-bold tracking-wide">
@@ -40,21 +42,28 @@ function Navbar() {
         </ul>
 
         {/* Mobile hamburger */}
-        <button className="sm:hidden text-2xl" onClick={() => setOpen(!open)}>
-          ☰
+        <button
+          className="sm:hidden text-2xl focus:outline-none"
+          onClick={() => setOpen(!open)}
+        >
+          {open ? <FaTimes /> : <FaBars />}
         </button>
       </div>
 
-      {/* Mobile menu */}
-      {open && (
-        <ul className="sm:hidden flex flex-col gap-4 px-6 pb-4 bg-gray-900">
+      {/* Mobile dropdown */}
+      <div
+        className={`sm:hidden absolute top-[64px] left-0 w-full bg-gray-900 border-t border-gray-800 transition-all duration-300 ease-in-out ${
+          open ? "opacity-100 max-h-96" : "opacity-0 max-h-0 overflow-hidden"
+        }`}
+      >
+        <ul className="flex flex-col items-center gap-4 py-6">
           {links.map((link) => (
             <li key={link.name}>
               <a
                 href={link.href}
                 target={link.target}
                 rel="noopener noreferrer"
-                className="block py-2 text-white hover:text-blue-400 transition-colors"
+                className="block text-lg text-white hover:text-blue-400 transition-colors"
                 onClick={() => setOpen(false)}
               >
                 {link.name}
@@ -62,7 +71,7 @@ function Navbar() {
             </li>
           ))}
         </ul>
-      )}
+      </div>
     </nav>
   );
 }
